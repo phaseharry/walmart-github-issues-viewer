@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import IssueList from './Components/IssueList';
 import DetailedIssue from './Components/DetailedIssue';
 import Navigator from './Components/Navigator';
+import Loading from './Components/Loading';
 import { getJson } from './utils/fetchWrapper';
 import { THORAX_ISSUES } from './constants/APIRoutes';
 import './App.css';
@@ -24,7 +25,7 @@ function App() {
   return (
     <div className="App">
       {
-      isLoading ? <h1>Loading...</h1> : 
+      isLoading ? <Loading />: 
       <Router>
         <Navigator />
         <Switch>

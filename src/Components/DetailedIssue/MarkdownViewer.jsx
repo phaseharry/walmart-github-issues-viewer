@@ -9,6 +9,9 @@ const MarkdownViewer = styled(ReactMarkdown)`
   padding: 0 1rem;
   border: 0.5px solid ${SECONDARY};
   overflow: auto;
+  > p > a {
+    color: yellow;
+  }
 `;
 
 export default MarkdownViewer;

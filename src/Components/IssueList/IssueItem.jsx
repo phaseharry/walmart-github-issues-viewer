@@ -54,7 +54,7 @@ const ItemContent = styled.div`
 `;
 
 const IssueItem = ({ title, number, state, user, id, createdAt, style }) => {
-  const dateIssueOpened = format(new Date(createdAt), "MMMM d, y")
+  const dateIssueOpened = format(new Date(createdAt), "MMMM d, y");
   return (
     <IssueItemContainer style={style}>
       <ItemContent>

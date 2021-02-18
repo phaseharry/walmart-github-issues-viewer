@@ -52,13 +52,13 @@ const IssueList = ({ issues }) => {
     const startIdx = ((pagination.currentPage - 1) * ITEMS_PER_PAGE);
     const displayedPages = issues.slice(startIdx, startIdx + ITEMS_PER_PAGE);
     setDisplayed(displayedPages);
-  }, [pagination.currentPage, issues])
+  }, [pagination.currentPage, issues]);
 
   const changePage = (event, value) => {
     setPagination({
       ...pagination,
       currentPage: value,
-    })
+    });
   };
 
   return (

@@ -8,12 +8,14 @@ const DetailedIssueContainer = styled.div`
   margin-top: 0.9rem;
 `;
 
-const DetailedIssueBody = ({ username, body, createdAt }) => {
+const DetailedIssueBody = ({ user, body, createdAt }) => {
   const timePassed = createdAt ? formatDistance(subDays(new Date(createdAt), 3), new Date(), { addSuffix: true }) : '';
+  const username = user ? user.login : '';
+  const htmlUrl = user ? user.html_url : '';
   return (
     <DetailedIssueContainer>
       <ContentHeader>
-        <span>{username}</span> commented {timePassed}
+        <a href={htmlUrl} rel="noreferrer" target="_blank">{username} </a> commented {timePassed}
       </ContentHeader>
       <MarkdownViewer>
         {body}

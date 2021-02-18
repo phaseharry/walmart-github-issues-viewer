@@ -7,6 +7,10 @@ const ContentHeader = styled.div`
   border: 0.5px solid ${SECONDARY};
   padding: 0.5rem 1rem;
   color: ${LIGHT_GRAY};
+  > a {
+    color: white;
+    text-decoration: none;
+  }
   > span {
     font-weight: 500;
     font-size: 0.9rem;

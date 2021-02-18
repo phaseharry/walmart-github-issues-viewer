@@ -13,7 +13,8 @@ const CommentItem = ({ user, body, createdAt }) => {
   return (
     <ItemContainer>
        <ContentHeader>
-        <span>{user.login}</span> commented {timePassed}
+       <a href={user.html_url} rel="noreferrer" target="_blank">{user.login} </a>
+        commented {timePassed}
       </ContentHeader>
       <MarkdownViewer>
         {body}

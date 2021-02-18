@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const DetailedIssue = (props) => {
+const DetailedIssue = ({ issues }) => {
+  const [currentIssue, setCurrentIssue] = useState({});
   const { issueId } = useParams();
-  console.log(issueId);
+
+  useEffect(() => {
+    const issue = issues.find(is => is.id.toString() === issueId);
+    setCurrentIssue(issue);
+  }, [issues, issueId]);
+
+  console.log(currentIssue);
+
   return (
     <div>DETAILED ISSUE</div>
   )

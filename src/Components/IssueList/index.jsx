@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Pagination from '@material-ui/lab/Pagination';
-import { getJson } from '../../utils/fetchWrapper';
-import { THORAX_ISSUES } from '../../constants/APIRoutes';
 import IssueItem from './IssueItem';
 
 const Container = styled.div`
@@ -32,29 +30,22 @@ const PaginationContainer = styled.div`
 `;
 
 const ITEMS_PER_PAGE = 14;
+const DEFAULT_PAGE = 1;
 
-const IssueList = () => {
-  const [issues, setIssues] = useState([]);
+const IssueList = ({ issues }) => {
   const [displayed, setDisplayed] = useState([]);
-  const [isLoading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
-    currentPage: 1,
-    pageLimit: 1,
+    currentPage: DEFAULT_PAGE,
+    pageLimit: DEFAULT_PAGE,
   });
 
   useEffect(() => {
-    async function fetchIssues(){
-      const data = await getJson(THORAX_ISSUES);
-      setIssues(data);
-      setPagination({
-        currentPage: 1,
-        pageLimit: Math.ceil(data.length / ITEMS_PER_PAGE),
-      })
-      setDisplayed(data.slice(0, ITEMS_PER_PAGE));
-      setLoading(false);
-    }
-    fetchIssues();
-  }, []);
+    setPagination({
+      currentPage: DEFAULT_PAGE,
+      pageLimit: Math.ceil(issues.length / ITEMS_PER_PAGE),
+    })
+    setDisplayed(issues.slice(0, ITEMS_PER_PAGE));
+  }, [issues]);
 
   // listens for changes in page number
   useEffect(() => {
@@ -70,14 +61,12 @@ const IssueList = () => {
     })
   };
 
-  if(isLoading) return <h4>Loading...</h4>;
-
   return (
     <Container>
     <AppTitle>Thorax Github Issues</AppTitle>
     <IssueListItems>
       {displayed.map((issue, idx) => {
-        const { title, number, state, user } = issue;
+        const { title, number, state, user, id } = issue;
         return (
           <IssueItem 
             key={idx} 
@@ -85,6 +74,7 @@ const IssueList = () => {
             number={number} 
             state={state} 
             user={user}
+            id={id}
             style={idx === 0 ? { borderTopLeftRadius: "6px", borderTopRightRadius: "6px" }
               : idx === displayed.length - 1 ? { borderBottomRightRadius: "6px", borderBottomLeftRadius: "6px" } 
               : {}

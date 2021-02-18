@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Tooltip from '@material-ui/core/Tooltip';
 import { GREEN } from '../../constants/colors';
+import { DETAILED_ISSUE } from '../../constants/Routes'
+
+const DetailedIssueLinks = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
 
 const IssueItemContainer = styled.div`
   border: 1px solid white;
@@ -45,7 +52,7 @@ const ItemContent = styled.div`
   justify-content: space-evenly;
 `;
 
-const IssueItem = ({ title, number, state, user, style }) => {
+const IssueItem = ({ title, number, state, user, id, style }) => {
   return (
     <IssueItemContainer style={style}>
       <ItemContent>
@@ -55,7 +62,9 @@ const IssueItem = ({ title, number, state, user, style }) => {
               <OpenIssueIcon fontSize="small" />
             </Tooltip>
           : null}
-          <span>{title}</span>
+          <DetailedIssueLinks to={`${DETAILED_ISSUE}/${id}`}>
+            <span>{title}</span>
+          </DetailedIssueLinks>
         </ContentRowOne>
         <ContentRowTwo>
           <span>#{number} opened by </span>

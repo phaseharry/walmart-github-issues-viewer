@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import IssueList from './Components/IssueList/index.jsx';
-import DetailedIssue from './Components/DetailedIssue/index.jsx';
+import IssueList from './Components/IssueList';
+import DetailedIssue from './Components/DetailedIssue';
 import { getJson } from './utils/fetchWrapper';
 import { THORAX_ISSUES } from './constants/APIRoutes';
 import './App.css';

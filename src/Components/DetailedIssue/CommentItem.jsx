@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { formatDistance, subDays } from 'date-fns'
 import ContentHeader from './ContentHeader';
-import MarkdownViewer from '../MarkdownViewer';
+import MarkdownViewer from './MarkdownViewer';
 
 const ItemContainer = styled.div`
   margin-bottom: 0.6rem;
 `;
 
-
-const CommentItem = ({ user, body, created_at }) => {
+const CommentItem = ({ user, body, createdAt }) => {
+  const timePassed = createdAt ? formatDistance(subDays(new Date(createdAt), 3), new Date(), { addSuffix: true }) : '';
   return (
     <ItemContainer>
        <ContentHeader>
-        <span>{user.login}</span> commented 5 days ago
+        <span>{user.login}</span> commented {timePassed}
       </ContentHeader>
       <MarkdownViewer>
         {body}

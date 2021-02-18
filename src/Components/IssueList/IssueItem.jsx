@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Tooltip from '@material-ui/core/Tooltip';
 import { GREEN, SECONDARY } from '../../constants/colors';
@@ -52,7 +53,8 @@ const ItemContent = styled.div`
   justify-content: space-evenly;
 `;
 
-const IssueItem = ({ title, number, state, user, id, style }) => {
+const IssueItem = ({ title, number, state, user, id, createdAt, style }) => {
+  const dateIssueOpened = format(new Date(createdAt), "MMMM d, y")
   return (
     <IssueItemContainer style={style}>
       <ItemContent>
@@ -67,7 +69,7 @@ const IssueItem = ({ title, number, state, user, id, style }) => {
           </DetailedIssueLinks>
         </ContentRowOne>
         <ContentRowTwo>
-          <span>#{number} opened by </span>
+          <span>#{number} opened on {dateIssueOpened} by </span>
           <a href={user.html_url} rel="noreferrer" target="_blank">{user.login}</a>
         </ContentRowTwo>
       </ItemContent>

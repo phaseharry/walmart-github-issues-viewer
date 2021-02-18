@@ -66,7 +66,7 @@ const IssueList = ({ issues }) => {
       <AppTitle>Thorax Github Issues</AppTitle>
       <IssueListItems>
         {displayed.map((issue, idx) => {
-          const { title, number, state, user, id } = issue;
+          const { title, number, state, user, id, created_at } = issue;
           return (
             <IssueItem 
               key={idx} 
@@ -74,6 +74,7 @@ const IssueList = ({ issues }) => {
               number={number} 
               state={state} 
               user={user}
+              createdAt={created_at}
               id={id}
               style={idx === 0 ? { borderTopLeftRadius: "6px", borderTopRightRadius: "6px" }
                 : idx === displayed.length - 1 ? { borderBottomRightRadius: "6px", borderBottomLeftRadius: "6px" } 

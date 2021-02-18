@@ -15,7 +15,6 @@ const CommentsHeader = styled.div`
 `;
 
 const DetailedIssueBody = ({ commentList }) => {
-  console.log(commentList);
   return (
     <DetailedIssueBodyContainer>
       <CommentsHeader>
@@ -25,6 +24,7 @@ const DetailedIssueBody = ({ commentList }) => {
       </CommentsHeader>
       {commentList.map((comment, idx) => {
         const { user, body, created_at } = comment;
+        console.log(comment);
         return <CommentItem key={idx} user={user} body={body} createdAt={created_at} />;
       })}
     </DetailedIssueBodyContainer>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
-import { SECONDARY } from '../constants/colors';
+import { SECONDARY } from '../../constants/colors';
 
 const MarkdownViewer = styled(ReactMarkdown)`
   background-color: #292834;

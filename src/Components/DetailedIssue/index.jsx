@@ -36,14 +36,14 @@ const DetailedIssue = ({ issues }) => {
     }
   }, [issues, issueId]);
 
-  const { title, number, state, user, comments, body } = currentIssue;
+  const { title, number, state, user, comments, body, created_at } = currentIssue;
   const username = user ? user.login : '';
-
+  
   return (
     <Container>
       <DetailedIssueHeader title={title} issueNumber={number} state={state} username={username} comments={comments} />
       <hr/>
-      <DetailedIssueBody username={username} body={body} />
+      <DetailedIssueBody username={username} body={body} createdAt={created_at} />
       <DetailedIssueComments commentList={commentList} />
     </Container>
   )

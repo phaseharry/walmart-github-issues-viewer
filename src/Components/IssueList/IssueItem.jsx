@@ -43,11 +43,9 @@ const ItemContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
 `;
 
 const IssueItem = ({ title, number, state, user, style }) => {
-  console.log(user);
   return (
     <IssueItemContainer style={style}>
       <ItemContent>

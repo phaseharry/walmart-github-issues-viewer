@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Tooltip from '@material-ui/core/Tooltip';
-import { GREEN } from '../../constants/colors';
+import { GREEN, SECONDARY } from '../../constants/colors';
 import { DETAILED_ISSUE } from '../../constants/Routes'
 
 const DetailedIssueLinks = styled(Link)`
@@ -12,7 +12,7 @@ const DetailedIssueLinks = styled(Link)`
 `;
 
 const IssueItemContainer = styled.div`
-  border: 1px solid white;
+  border: 1px solid ${SECONDARY};
   font-size: 1rem;
   width: 100%;
   height: 3.5rem;

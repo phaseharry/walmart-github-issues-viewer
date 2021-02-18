@@ -17,12 +17,13 @@ const IssueListItems= styled.div`
 
 const AppTitle = styled.h1`
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   text-align: center;
 `;
 
 const PaginationContainer = styled.div`
-  margin: 2rem auto 0 auto;
+  margin: 1.5rem auto 0rem auto;
+  padding-bottom: 2rem;
   width: 500px;
   font-size: 1rem;
   display: flex;

@@ -6,7 +6,7 @@ import { GREEN, LIGHT_GRAY } from '../../constants/colors';
 const IssueTitle = styled.span`
   display: block; 
   font-size: 2em; 
-  padding-top: 0.67em; 
+  /* padding-top: 0.67em;  */
   > span {
     color: ${LIGHT_GRAY};
     font-weight: 300;

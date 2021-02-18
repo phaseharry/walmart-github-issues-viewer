@@ -4,23 +4,24 @@ import { getJson } from '../../utils/fetchWrapper';
 import { THORAX_ISSUES } from '../../constants/APIRoutes';
 import IssueItem from './IssueItem';
 
-const IssueListContainer = styled.div`
+const Container = styled.div`
+  color: white;
+`;
+
+const IssueListItems= styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 `;
 
 const AppTitle = styled.h1`
   margin: 0 auto;
   padding: 20px;
-  color: white;
   text-align: center;
 `;
 
 const PaginationContainer = styled.div`
-  color: white;
   font-size: 1rem;
 `;
 
@@ -36,18 +37,18 @@ const IssueList = () => {
     async function fetchIssues(){
       const data = await getJson(THORAX_ISSUES);
       setIssues(data);
-      setDisplayed(data.slice(0, 10));
       setPagination({
         currentPage: 1,
         pageLimit: Math.floor(data.length / 10),
       })
+      setDisplayed(data.slice(0, 10));
     }
     fetchIssues();
   }, []);
 
   // listens for changes in page number
   useEffect(() => {
-    const startIdx = (pagination.currentPage * 10) - 1
+    const startIdx = ((pagination.currentPage - 1) * 10);
     const displayedPages = issues.slice(startIdx, startIdx + 10);
     setDisplayed(displayedPages);
   }, [pagination.currentPage, issues])
@@ -66,18 +67,18 @@ const IssueList = () => {
   }
 
   return (
-    <>
+    <Container>
     <AppTitle>Thorax Github Issues</AppTitle>
-    <IssueListContainer>
+    <IssueListItems>
       {displayed.map((issue, idx) => {
         const { title, number, state } = issue;
         return <IssueItem key={idx} title={title} number={number} state={state} />
       })}
-    </IssueListContainer>
+    </IssueListItems>
     <PaginationContainer>
       {generatePagination()}
     </PaginationContainer>
-    </>
+    </Container>
   )
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Pagination from '@material-ui/lab/Pagination';
 import { getJson } from '../../utils/fetchWrapper';
 import { THORAX_ISSUES } from '../../constants/APIRoutes';
 import IssueItem from './IssueItem';
@@ -22,7 +23,11 @@ const AppTitle = styled.h1`
 `;
 
 const PaginationContainer = styled.div`
+  margin: 2rem auto 0 auto;
+  width: 500px;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
 `;
 
 const IssueList = () => {
@@ -53,18 +58,12 @@ const IssueList = () => {
     setDisplayed(displayedPages);
   }, [pagination.currentPage, issues])
 
-  const changePage = (pageNumber) => {
+  const changePage = (event, value) => {
     setPagination({
       ...pagination,
-      currentPage: pageNumber,
+      currentPage: value,
     })
-  } 
-
-  const generatePagination = () => {
-    return [...Array(pagination.pageLimit)].map((e, i) => {
-      return <span key={i} onClick={() => changePage(i + 1)}>{i + 1}</span>
-    })
-  }
+  };
 
   return (
     <Container>
@@ -76,7 +75,7 @@ const IssueList = () => {
       })}
     </IssueListItems>
     <PaginationContainer>
-      {generatePagination()}
+      <Pagination count={pagination.pageLimit} page={pagination.currentPage} onChange={changePage} shape="rounded"/>
     </PaginationContainer>
     </Container>
   )

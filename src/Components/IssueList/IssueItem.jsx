@@ -1,9 +1,15 @@
-import IssueList from "."
 import React from 'react';
+import styled from 'styled-components';
+
+const IssueItemContainer = styled.div`
+
+`;
 
 const IssueItem = ({ title, number, state }) => {
   return (
-    <div>{title} {number} {state}</div>
+    <IssueItemContainer>
+      <div>{title} {number} {state}</div>
+    </IssueItemContainer>
   )
 
 }

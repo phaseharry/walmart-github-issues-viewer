@@ -24,6 +24,7 @@ const DetailedIssue = ({ issues }) => {
   useEffect(() => {
     async function fetchComments(){
       const res = await getJson(issue.comments_url);
+      console.log(res);
       setCommentList(res);
     }
     const issue = issues.find(is => is.id.toString() === issueId);
@@ -43,7 +44,7 @@ const DetailedIssue = ({ issues }) => {
       <DetailedIssueHeader title={title} issueNumber={number} state={state} username={username} comments={comments} />
       <hr/>
       <DetailedIssueBody username={username} body={body} />
-      <DetailedIssueComments commentsList={commentList} />
+      <DetailedIssueComments commentList={commentList} />
     </Container>
   )
 }

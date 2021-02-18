@@ -15,7 +15,6 @@ function App() {
       setLoading(true);
       const data = await getJson(THORAX_ISSUES);
       setIssues(data);
-      console.log(data);
       setLoading(false);
     }
     fetchIssues();

@@ -29,7 +29,7 @@ const PaginationContainer = styled.div`
   justify-content: center;
 `;
 
-const ITEMS_PER_PAGE = 14;
+const ITEMS_PER_PAGE = 12;
 const DEFAULT_PAGE = 1;
 
 const IssueList = ({ issues }) => {
@@ -63,29 +63,29 @@ const IssueList = ({ issues }) => {
 
   return (
     <Container>
-    <AppTitle>Thorax Github Issues</AppTitle>
-    <IssueListItems>
-      {displayed.map((issue, idx) => {
-        const { title, number, state, user, id } = issue;
-        return (
-          <IssueItem 
-            key={idx} 
-            title={title} 
-            number={number} 
-            state={state} 
-            user={user}
-            id={id}
-            style={idx === 0 ? { borderTopLeftRadius: "6px", borderTopRightRadius: "6px" }
-              : idx === displayed.length - 1 ? { borderBottomRightRadius: "6px", borderBottomLeftRadius: "6px" } 
-              : {}
-            } 
-          />
-        )
-      })}
-    </IssueListItems>
-    <PaginationContainer>
-      <Pagination count={pagination.pageLimit} page={pagination.currentPage} onChange={changePage} shape="rounded"/>
-    </PaginationContainer>
+      <AppTitle>Thorax Github Issues</AppTitle>
+      <IssueListItems>
+        {displayed.map((issue, idx) => {
+          const { title, number, state, user, id } = issue;
+          return (
+            <IssueItem 
+              key={idx} 
+              title={title} 
+              number={number} 
+              state={state} 
+              user={user}
+              id={id}
+              style={idx === 0 ? { borderTopLeftRadius: "6px", borderTopRightRadius: "6px" }
+                : idx === displayed.length - 1 ? { borderBottomRightRadius: "6px", borderBottomLeftRadius: "6px" } 
+                : {}
+              } 
+            />
+          )
+        })}
+      </IssueListItems>
+      <PaginationContainer>
+        <Pagination count={pagination.pageLimit} page={pagination.currentPage} onChange={changePage} shape="rounded"/>
+      </PaginationContainer>
     </Container>
   );
 }

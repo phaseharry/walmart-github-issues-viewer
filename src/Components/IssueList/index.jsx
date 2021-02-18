@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getJson } from '../../utils/fetchWrapper';
 import { THORAX_ISSUES } from '../../constants/APIRoutes';
+import IssueItem from './IssueItem';
 
 const IssueListContainer = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +17,11 @@ const AppTitle = styled.h1`
   padding: 20px;
   color: white;
   text-align: center;
+`;
+
+const PaginationContainer = styled.div`
+  color: white;
+  font-size: 1rem;
 `;
 
 const IssueList = () => {
@@ -40,27 +45,38 @@ const IssueList = () => {
     fetchIssues();
   }, []);
 
+  // listens for changes in page number
+  useEffect(() => {
+    const startIdx = (pagination.currentPage * 10) - 1
+    const displayedPages = issues.slice(startIdx, startIdx + 10);
+    setDisplayed(displayedPages);
+  }, [pagination.currentPage, issues])
+
+  const changePage = (pageNumber) => {
+    setPagination({
+      ...pagination,
+      currentPage: pageNumber,
+    })
+  } 
+
   const generatePagination = () => {
     return [...Array(pagination.pageLimit)].map((e, i) => {
-      return <span key={i}>{i + 1}</span>
+      return <span key={i} onClick={() => changePage(i + 1)}>{i + 1}</span>
     })
   }
 
-  console.log(pagination);
   return (
     <>
     <AppTitle>Thorax Github Issues</AppTitle>
     <IssueListContainer>
       {displayed.map((issue, idx) => {
-        return (
-        <div key={idx}>
-          {issue.url}
-        </div>);
+        const { title, number, state } = issue;
+        return <IssueItem key={idx} title={title} number={number} state={state} />
       })}
-      <div>
-        {generatePagination()}
-      </div>
     </IssueListContainer>
+    <PaginationContainer>
+      {generatePagination()}
+    </PaginationContainer>
     </>
   )
 }
